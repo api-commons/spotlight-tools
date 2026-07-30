@@ -1,8 +1,16 @@
-# Spectral CLI — API Commons build
+# Spotlight Tools
 
 **A maintained, openly-governed build of the [Spectral](https://github.com/stoplightio/spectral)
 linter — the reference implementation of the
-[Spectral ruleset specification](https://github.com/api-commons/spectral-rules).**
+[Spectral ruleset specification](https://github.com/api-commons/spotlight-spec).**
+
+> **On the name.** The project is **Spotlight**; the repositories are `spotlight-tools` and
+> [`spotlight-spec`](https://github.com/api-commons/spotlight-spec). The *ruleset format* is still
+> the Spectral ruleset format and is described that way throughout, because that is what your
+> rulesets are. The rename happened on day two rather than being left open, because asking people
+> to adopt a new scope and a new issue tracker under somebody else's name builds a mess into the
+> foundation, and renaming after adoption is far more expensive than renaming before it. **The
+> `spectral` binary name is not changing** — see [Install and use](#install-and-use).
 
 This is a copy of `stoplightio/spectral` at **v6.16.2** (upstream `develop`, 2026-07-24), with
 full commit history preserved. It is a *copy*, not a GitHub fork, for one practical reason:
@@ -32,7 +40,7 @@ maintainer. On 2026-06-30, install-time telemetry was added across the packages.
 Because the specification and the tool were never separated, **an unmaintained tool means an
 unmaintained format.** That is the actual problem, and it is why this repository has a sibling.
 
-- **The rules** — [api-commons/spectral-rules](https://github.com/api-commons/spectral-rules) —
+- **The rules** — [api-commons/spotlight-spec](https://github.com/api-commons/spotlight-spec) —
   the ruleset format as a standalone, independently versioned specification with a portable JSON
   Schema. Rules should outlive any linter that runs them.
 - **The tool** — this repository — the reference implementation, kept aligned with the spec.
@@ -53,8 +61,8 @@ is a starting point, not a rewrite.
 
 | What | Where |
 |---|---|
-| **Problems with the CLI or engine** | [spectral-cli/issues](https://github.com/api-commons/spectral-cli/issues) |
-| **Problems with the ruleset format or spec** | [spectral-rules/issues](https://github.com/api-commons/spectral-rules/issues) |
+| **Problems with the CLI or engine** | [spotlight-tools/issues](https://github.com/api-commons/spotlight-tools/issues) |
+| **Problems with the ruleset format or spec** | [spotlight-spec/issues](https://github.com/api-commons/spotlight-spec/issues) |
 | **Direction, governance, naming, where this should live** | [the discussion thread](https://github.com/orgs/api-commons/discussions/28) |
 
 If you depend on Spectral and want this to keep moving, **say so in the discussion.** Knowing who
