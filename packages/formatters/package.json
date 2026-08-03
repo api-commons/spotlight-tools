@@ -1,9 +1,9 @@
 {
   "name": "@stoplight/spectral-formatters",
   "version": "1.5.1",
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://spotlight-rules.com",
+  "bugs": "https://github.com/api-commons/spotlight-tools/issues",
+  "author": "API Commons <apicommons@gmail.com> (https://apicommons.org)",
   "engines": {
     "node": "^16.20 || ^18.18 || >= 20.17"
   },
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral.git"
+    "url": "https://github.com/api-commons/spotlight-tools.git"
   },
   "scripts": {
     "pretest": "yarn prebuild",
@@ -54,5 +54,8 @@
     "eol": "0.9.1",
     "node-html-parser": "^4.1.5",
     "xml2js": "^0.5.0"
-  }
+  },
+  "contributors": [
+    "The Spectral contributors (https://github.com/stoplightio/spectral/graphs/contributors)"
+  ]
 }

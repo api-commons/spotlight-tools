@@ -1,9 +1,9 @@
 {
   "name": "@stoplight/spectral-cli",
   "version": "6.16.2",
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://spotlight-rules.com",
+  "bugs": "https://github.com/api-commons/spotlight-tools/issues",
+  "author": "API Commons <apicommons@gmail.com> (https://apicommons.org)",
   "bin": {
     "spectral": "./dist/index.js"
   },
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral.git"
+    "url": "https://github.com/api-commons/spotlight-tools.git"
   },
   "scripts": {
     "prelint": "node ../../scripts/inline-version.mjs",
@@ -72,5 +72,8 @@
       "../*/dist/**/*.js.map",
       "../*/src/**/*.ts"
     ]
-  }
+  },
+  "contributors": [
+    "The Spectral contributors (https://github.com/stoplightio/spectral/graphs/contributors)"
+  ]
 }

@@ -1,9 +1,9 @@
 {
   "name": "@stoplight/spectral-ruleset-bundler",
   "version": "1.7.0",
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://spotlight-rules.com",
+  "bugs": "https://github.com/api-commons/spotlight-tools/issues",
+  "author": "API Commons <apicommons@gmail.com> (https://apicommons.org)",
   "engines": {
     "node": "^16.20 || ^18.18 || >= 20.17"
   },
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral.git"
+    "url": "https://github.com/api-commons/spotlight-tools.git"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "~22.0.2",
@@ -57,5 +57,8 @@
     "fetch-mock": "^12.6.0",
     "memfs": "^3.5.3",
     "prettier": "^2.4.1"
-  }
+  },
+  "contributors": [
+    "The Spectral contributors (https://github.com/stoplightio/spectral/graphs/contributors)"
+  ]
 }
