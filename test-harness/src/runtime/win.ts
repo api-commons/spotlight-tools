@@ -21,7 +21,7 @@ export const spawnNode: SpawnFn = async (command, env, cwd) => {
   // PowerShell parses a statement that begins with a quoted string as a string literal
   // rather than a command, so it would echo the path instead of running it. The call
   // operator is required once {bin} is a quoted interpreter path plus a script path.
-  const invocation = winCommand.startsWith('"') ? `& ${winCommand}` : winCommand;
+  const invocation = /^['"]/.test(winCommand) ? `& ${winCommand}` : winCommand;
   const wrappedCommand = `cd '${cwd}';${invocation};echo LASTEXITCODE=$LASTEXITCODE`;
   const finalCommand = `powershell -Command "& { ${wrappedCommand} }"`;
 
