@@ -1,7 +1,7 @@
-name: Post-merge to develop workflow
+name: Post-merge to main workflow
 on:
   push:
-    branches: [develop]
+    branches: [main]
 
 jobs:
   run-commit-workflow:
