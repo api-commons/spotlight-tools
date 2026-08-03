@@ -43,7 +43,11 @@ jobs:
         # from ours (`--not HEAD`), which a shallow clone cannot answer.
         fetch-depth: 0
     - name: Mark repo as safe for Git
-      run: git config --global --add safe.directory "${{ github.workspace }}"
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      # $GITHUB_WORKSPACE, not ${{ github.workspace }}. These jobs run inside a
+      # container, where the expression resolves to the HOST path
+      # (/home/runner/work/...) while the repository is actually mounted at
+      # /__w/... The env var is correct in both contexts.
     - name: Watch upstream
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
