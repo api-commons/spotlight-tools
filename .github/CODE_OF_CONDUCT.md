@@ -6,7 +6,7 @@ This project adopts the [Contributor Covenant, version 2.1](https://www.contribu
 
 ## Reporting
 
-Report unacceptable behaviour to **apicommons@gmail.com**. Reports are read by the maintainer listed in `MAINTAINERS.yaml`, handled confidentially, and acknowledged within three business days.
+Report unacceptable behaviour to **info@apicommons.org**. Reports are read by the maintainer listed in `MAINTAINERS.yaml`, handled confidentially, and acknowledged within three business days.
 
 If a report concerns the maintainer, say so in the subject line — the escalation path in `GOVERNANCE.md` applies.
 
