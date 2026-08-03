@@ -1,0 +1,28 @@
+name: Check documentation URLs
+
+# The reachability half of the documentation-URL check, kept out of the pull-request
+# path on purpose: it depends on a third party being up, and a pull request should not
+# fail because somebody else's site is down.
+#
+# This is the job that would have caught the original rot — three shipped rule
+# documentation links returning 404 on infrastructure this project does not control,
+# for an unknown length of time, with nothing watching.
+
+on:
+  schedule:
+  - cron: '17 6 * * 1' # Mondays, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container:
+      image: node:lts
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5.0.1
+    - name: Check documentation URLs resolve
+      run: node ./scripts/check-documentation-urls.mjs --network

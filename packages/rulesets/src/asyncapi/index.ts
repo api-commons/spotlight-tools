@@ -33,7 +33,7 @@ import asyncApiSecurity from './functions/asyncApiSecurity';
 import { latestVersion } from './functions/utils/specs';
 
 export default {
-  documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/asyncapi-rules.md',
+  documentationUrl: 'https://github.com/api-commons/spotlight-tools/blob/main/docs/reference/asyncapi-rules.md',
   formats: [aas2_0, aas2_1, aas2_2, aas2_3, aas2_4, aas2_5, aas2_6, aas3_0],
   rules: {
     'asyncapi-channel-no-empty-parameter': {

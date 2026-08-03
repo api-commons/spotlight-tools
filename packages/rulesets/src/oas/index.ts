@@ -31,7 +31,7 @@ import serverVariables from '../shared/functions/serverVariables';
 export { ruleset as default };
 
 const ruleset = {
-  documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/openapi-rules.md',
+  documentationUrl: 'https://github.com/api-commons/spotlight-tools/blob/main/docs/reference/openapi-rules.md',
   formats: [oas2, oas3, oas3_0, oas3_1],
   aliases: {
     PathItem: ['$.paths[*]'],
