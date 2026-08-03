@@ -1,0 +1,31 @@
+Spotlight Tools
+Copyright 2026 API Commons
+
+This product is a fork of Spectral, the open-source JSON/YAML linter for API
+descriptions.
+
+  Spectral
+  Copyright Stoplight, Inc. and the Spectral contributors
+  https://github.com/stoplightio/spectral
+  Licensed under the Apache License, Version 2.0.
+
+The overwhelming majority of this codebase is the work of Stoplight, Inc. and the
+Spectral contributors, developed over many years. That work is licensed under the
+Apache License, Version 2.0 (the "License"); a copy is in the accompanying LICENSE
+file, and it is also available at:
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+This fork was taken from stoplightio/spectral at v6.16.2 (upstream `develop`,
+2026-07-24). Changes made by API Commons are recorded in the git history of
+https://github.com/api-commons/spotlight-tools and summarized in the README.
+
+Neither Stoplight, Inc., SmartBear Software, nor any Spectral contributor
+maintains this build, endorses it, or is responsible for it. Do not report issues
+with this build to them. Reporting routes for this build are in SECURITY.md and
+CONTRIBUTING.md.
+
+The name "Spectral" and any Stoplight or SmartBear trademarks remain the property
+of their respective owners. This project is not affiliated with them. The
+`spectral` command name is retained for compatibility with existing rulesets and
+CI configurations, as a nominative use, and for no other reason.

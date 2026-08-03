@@ -1,0 +1,32 @@
+# Maintainers of api-commons/spotlight-tools.
+#
+# The roster is data, not prose, so that adding or removing a maintainer is a
+# reviewable pull request against a diffable file rather than an edit somebody
+# makes to a paragraph.
+#
+# Governance stage and the rules that apply at each stage: GOVERNANCE.md
+
+stage: 0 # one maintainer; lazy consensus. See GOVERNANCE.md.
+
+maintainers:
+  - github: kinlane
+    name: Kin Lane
+    role: maintainer
+    scope: all
+    since: 2026-07-30
+    affiliation: API Evangelist
+    contact: info@apicommons.org
+
+editors: []
+
+stewards: []
+
+# Emeritus records people who maintained this repository and have stepped back.
+# It exists so that stepping back is a normal, recorded, non-awkward event
+# rather than a silent disappearance.
+emeritus: []
+
+# The upstream Spectral maintainers and contributors are NOT listed here. They
+# built this codebase, they are credited in NOTICE, the README and the git
+# history, and none of them have agreed to maintain this build. Listing them
+# would misrepresent them.
