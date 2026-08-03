@@ -190,6 +190,8 @@ Before you open an issue, please search to see if anyone else has already opened
 
 ## Support
 
-For help, discussions, or "how-to" type questions, please use [GitHub Discussions](https://github.com/stoplightio/spectral/discussions). If you are unsure if you are experiencing a bug then this is also a great place to start, as a discussion can be turned into an issue easily.
+For help, discussions, or "how-to" type questions, please use [GitHub Discussions on this repository](https://github.com/api-commons/spotlight-tools/discussions). If you are unsure if you are experiencing a bug then this is also a great place to start, as a discussion can be turned into an issue easily.
 
-If you have found a security issue, please email [security@stoplight.io](mailto:security@stoplight.io) directly.
+If you have found a security issue, **do not open an issue or a discussion.** Follow [SECURITY.md](SECURITY.md), which routes reports to a maintainer of this build. This section previously sent security reports to `security@stoplight.io`, an address this project does not control.
+
+> The rest of this file is still upstream's, and parts of it describe a review process and an organization that are not maintaining this code. Rewriting it is tracked in [#6](https://github.com/api-commons/spotlight-tools/issues/6).
