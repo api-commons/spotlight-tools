@@ -15,7 +15,7 @@ import arazzoStepRequestBodyValidation from './functions/arazzoStepRequestBodyVa
 import arazzoStepValidation from './functions/arazzoStepValidation';
 
 export default {
-  documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/arazzo-rules.md',
+  documentationUrl: 'https://github.com/api-commons/spotlight-tools/blob/main/docs/reference/arazzo-rules.md',
   formats: [arazzo1_0],
   rules: {
     'arazzo-document-schema': {

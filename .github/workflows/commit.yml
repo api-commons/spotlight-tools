@@ -104,3 +104,8 @@ jobs:
         yarn lint.eslint
     - name: Lint documentation
       run: yarn lint.prettier
+    - name: Check shipped documentation URLs
+      # Structural only — no network. Every ruleset's documentationUrl must resolve to a
+      # file that exists in docs/reference/. Reachability is checked on a schedule
+      # instead, so a pull request never fails because a third party is having a bad day.
+      run: yarn lint.docs-urls
