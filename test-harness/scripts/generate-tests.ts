@@ -72,7 +72,20 @@ function getChangedScenarios(changedFiles: string[], scenarios: string[]): strin
 
       const env: Record<string, string> = {
         __dirname: scenario.path,
-        bin: path.join(__dirname, '../../packages/cli/binaries/spectral'),
+        // The harness runs the built CLI, not a packaged binary. Producing a
+        // distributable is a release concern; a per-commit test job should not be gated
+        // on it. See #35 — the Windows harness could never run because `pkg` had no base
+        // for the pinned Node patch version, so the whole suite was blocked by packaging.
+        //
+        // process.execPath rather than a bare `node`: scenarios are spawned with a
+        // scrubbed environment that has no PATH, which is why an absolute self-contained
+        // binary worked here before.
+        //
+        // SPECTRAL_BIN overrides it, so the real binary can still be exercised at release
+        // time by pointing at packages/cli/binaries/spectral.
+        bin:
+          process.env.SPECTRAL_BIN ??
+          `"${process.execPath}" "${path.join(__dirname, '../../packages/cli/dist/index.js')}"`,
         ...scenario.env,
       };
 

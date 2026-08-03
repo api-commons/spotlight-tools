@@ -19,11 +19,6 @@ runs:
         ./test-harness/tests/
       restore-keys: |-
         test-harness-${{ inputs.os }}-${{ inputs.node-version }}-
-  - uses: "./.github/actions/build-binary"
-    with:
-      targets: ${{ inputs.os }}
-      node-version: "${{ inputs.node-version }}"
-      bytecode: 'false'
   - name: Run harness tests
     run: yarn test.harness --maxWorkers=3
     shell: bash

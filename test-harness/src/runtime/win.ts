@@ -17,7 +17,12 @@ export const spawnNode: SpawnFn = async (command, env, cwd) => {
   });
 
   const winCommand = command.replace(/\/binaries\/(spectral\.exe|spectral)/, '/binaries/spectral.exe');
-  const wrappedCommand = `cd '${cwd}';${winCommand};echo LASTEXITCODE=$LASTEXITCODE`;
+
+  // PowerShell parses a statement that begins with a quoted string as a string literal
+  // rather than a command, so it would echo the path instead of running it. The call
+  // operator is required once {bin} is a quoted interpreter path plus a script path.
+  const invocation = winCommand.startsWith('"') ? `& ${winCommand}` : winCommand;
+  const wrappedCommand = `cd '${cwd}';${invocation};echo LASTEXITCODE=$LASTEXITCODE`;
   const finalCommand = `powershell -Command "& { ${wrappedCommand} }"`;
 
   await ps.addCommand(finalCommand);
