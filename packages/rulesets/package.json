@@ -1,9 +1,9 @@
 {
   "name": "@stoplight/spectral-rulesets",
   "version": "1.22.6",
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://spotlight-rules.com",
+  "bugs": "https://github.com/api-commons/spotlight-tools/issues",
+  "author": "API Commons <apicommons@gmail.com> (https://apicommons.org)",
   "engines": {
     "node": "^16.20 || ^18.18 || >= 20.17"
   },
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral.git"
+    "url": "https://github.com/api-commons/spotlight-tools.git"
   },
   "dependencies": {
     "@asyncapi/specs": "^6.8.0",
@@ -47,5 +47,8 @@
     "prelint": "yarn compile-schemas --quiet",
     "pretest": "yarn compile-schemas --quiet",
     "prebuild": "yarn compile-schemas --quiet"
-  }
+  },
+  "contributors": [
+    "The Spectral contributors (https://github.com/stoplightio/spectral/graphs/contributors)"
+  ]
 }

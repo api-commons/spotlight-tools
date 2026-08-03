@@ -2,12 +2,12 @@
   "name": "@stoplight/spectral-functions",
   "version": "1.10.5",
   "sideEffects": false,
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://spotlight-rules.com",
+  "bugs": "https://github.com/api-commons/spotlight-tools/issues",
+  "author": "API Commons <apicommons@gmail.com> (https://apicommons.org)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral"
+    "url": "https://github.com/api-commons/spotlight-tools.git"
   },
   "license": "Apache-2.0",
   "main": "dist/index.js",
@@ -33,5 +33,8 @@
   },
   "devDependencies": {
     "@stoplight/spectral-parsers": "*"
-  }
+  },
+  "contributors": [
+    "The Spectral contributors (https://github.com/stoplightio/spectral/graphs/contributors)"
+  ]
 }
