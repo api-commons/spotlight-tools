@@ -52,8 +52,19 @@ function getChangedScenarios(changedFiles: string[], scenarios: string[]): strin
 
   const scenarios = await fg('**/*.scenario', { cwd: SCENARIOS_DIR, absolute: true });
   const cache = fileEntryCache.create('spectral-test-harness', path.join(__dirname, '../../.cache'), true);
-  const changedFiles = cache.getUpdatedFiles([...scenarios, ...(await fg('**/**', { cwd: OUT_DIR, absolute: true }))]);
-  const changedScenarios = getChangedScenarios(changedFiles, scenarios);
+  // This generator is tracked alongside the scenarios. The `bin` command is baked into
+  // every generated test at generation time, so a change HERE invalidates every previously
+  // generated test even though no scenario file moved. Without this, a cached tests/
+  // directory silently keeps running the old command — which is exactly how #35's fix
+  // passed locally and failed in CI.
+  const changedFiles = cache.getUpdatedFiles([
+    __filename,
+    ...scenarios,
+    ...(await fg('**/**', { cwd: OUT_DIR, absolute: true })),
+  ]);
+  const changedScenarios = changedFiles.includes(__filename)
+    ? scenarios
+    : getChangedScenarios(changedFiles, scenarios);
 
   await Promise.all(
     Array.from(changedScenarios).map(async file => {
