@@ -1,0 +1,54 @@
+name: Upstream watch
+
+# Files an issue for each new upstream commit, and does nothing else.
+#
+# This does not keep the two codebases aligned. Spotlight Tools is a separate tool suite as
+# of the fork, and is expected to diverge — it will grow things upstream does not have. The
+# only purpose here is that no upstream change goes unnoticed, so each one can be adopted or
+# declined deliberately rather than by default.
+#
+# Most will be declined. An issue closed as `not planned` with a stated reason is this
+# working exactly as intended.
+
+on:
+  schedule:
+  - cron: '23 7 * * 1' # Mondays, 07:23 UTC
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'How far back to look, in days'
+        required: false
+        default: '30'
+        type: string
+      dry-run:
+        description: 'Print what would be filed without opening anything'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    container:
+      image: node:lts
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5.0.1
+      with:
+        # Full history is required: the script excludes upstream commits already reachable
+        # from ours (`--not HEAD`), which a shallow clone cannot answer.
+        fetch-depth: 0
+    - name: Mark repo as safe for Git
+      run: git config --global --add safe.directory "${{ github.workspace }}"
+    - name: Watch upstream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+      run: |
+        node ./scripts/upstream-watch.mjs \
+          --days "${{ inputs.days || '30' }}" \
+          ${{ inputs.dry-run == true && ' ' || '--file-issues' }}
