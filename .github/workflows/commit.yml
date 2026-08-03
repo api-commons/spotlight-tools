@@ -3,9 +3,11 @@ on:
   workflow_call:
   pull_request:
     branches: [main]
+    # `.github/**` is deliberately NOT ignored. Workflows and composite actions are the
+    # riskiest files here and were the only ones nothing verified — see #33. Three CI
+    # config changes merged unchecked on 3 August and two of them were wrong.
     paths-ignore:
     - README.md
-    - .github/**
 jobs:
   test-node:
     runs-on: ubuntu-latest
