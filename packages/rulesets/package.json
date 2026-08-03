@@ -3,7 +3,7 @@
   "version": "1.22.6",
   "homepage": "https://spotlight-rules.com",
   "bugs": "https://github.com/api-commons/spotlight-tools/issues",
-  "author": "API Commons <apicommons@gmail.com> (https://apicommons.org)",
+  "author": "API Commons <info@apicommons.org> (https://apicommons.org)",
   "engines": {
     "node": "^16.20 || ^18.18 || >= 20.17"
   },
