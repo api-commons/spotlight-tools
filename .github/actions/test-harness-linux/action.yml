@@ -10,19 +10,15 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: Compute commit SHAs to be used for caching purposes.
-    run: |-
-      git rev-parse HEAD~1 > /tmp/previous-commit-sha
-      git rev-parse HEAD > /tmp/current-commit-sha
-    shell: bash
   - name: restore_cache
     uses: actions/cache@v4.3.0
     with:
-      key: test-harness-{{ checksum "/tmp/previous-commit-sha" }}-${{ inputs.os }}-${{ inputs.node-version }}
+      key: test-harness-${{ inputs.os }}-${{ inputs.node-version }}-${{ github.sha }}
       path: |-
         ./.cache/spectral-test-harness
         ./test-harness/tests/
-      restore-keys: test-harness-{{ checksum "/tmp/previous-commit-sha" }}-${{ inputs.os }}-${{ inputs.node-version }}
+      restore-keys: |-
+        test-harness-${{ inputs.os }}-${{ inputs.node-version }}-
   - uses: "./.github/actions/build-binary"
     with:
       targets: ${{ inputs.os }}
@@ -37,4 +33,4 @@ runs:
       path: |-
         ./.cache/spectral-test-harness
         ./test-harness/tests/
-      key: test-harness-{{ checksum "/tmp/current-commit-sha" }}-${{ inputs.os }}-${{ inputs.node-version }}
+      key: test-harness-${{ inputs.os }}-${{ inputs.node-version }}-${{ github.sha }}
