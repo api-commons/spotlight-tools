@@ -23,7 +23,7 @@ jobs:
       with:
         fetch-depth: 2
     - name: Mark repo as safe for Git
-      run: git config --global --add safe.directory /__w/spectral/spectral
+      run: git config --global --add safe.directory "${{ github.workspace }}"
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
     - name: Build
@@ -42,7 +42,6 @@ jobs:
         os: "linux"
         node-version: "${{ matrix.node-version }}"
   test-windows:
-    if: github.ref == 'refs/heads/develop'
     runs-on: windows-latest
     steps:
     - name: Checkout code
@@ -58,11 +57,10 @@ jobs:
     - name: Run node tests
       run: yarn test.jest --ci --maxWorkers=3
     - name: Test harness
-      if: matrix.node-version == '18.20.8'
       uses: "./.github/actions/test-harness-windows"
       with:
         os: "windows"
-        node-version: "${{ matrix.node-version }}"
+        node-version: "18.20.8"
   test-browser:
     runs-on: ubuntu-latest
     steps:
