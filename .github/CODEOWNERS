@@ -1,3 +1,19 @@
-* @stoplightio/oss-spectral
+# Code owners for api-commons/spotlight-tools.
+#
+# Two things were inherited here unchanged and both were wrong for this repository:
+#
+#   * @stoplightio/oss-spectral
+#       A team in an organization that does not maintain this build. GitHub cannot
+#       resolve it from here, so review requests against it went nowhere silently.
+#
+#   /packages/rulesets/src/asyncapi @magicmatatjahu @smoya @jonaslagoni
+#       Real people who maintain AsyncAPI upstream and never agreed to review pull
+#       requests on this fork. Leaving them here would have sent them review
+#       requests they did not sign up for. Their work is still in this codebase and
+#       the attribution for it belongs in NOTICE and the git history, not in a file
+#       that pages them.
+#
+# There is one maintainer today. That is stated plainly rather than dressed up as a
+# team, and it is tracked in GOVERNANCE.md and MAINTAINERS.yaml.
 
-/packages/rulesets/src/asyncapi @magicmatatjahu @smoya @jonaslagoni
+* @kinlane

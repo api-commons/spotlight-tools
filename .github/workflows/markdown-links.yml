@@ -3,8 +3,7 @@ name: Check Markdown Links
 on:
   pull_request:
     branches:
-      - master
-      - develop
+      - main
 
 jobs:
   markdown-link-check:
