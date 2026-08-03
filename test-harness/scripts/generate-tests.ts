@@ -33,6 +33,16 @@ async function loadAssets(cwd: string, env: Record<string, string>, scenario: IS
   );
 }
 
+// The command the scenarios run. Quoting is platform-specific and not cosmetic:
+// win.ts wraps the whole command in `powershell -Command "& { ... }"`, so DOUBLE quotes
+// here terminate that wrapper and a path containing a space (C:\Program Files\nodejs)
+// splits into two tokens. PowerShell single quotes are literal and survive the wrapper.
+function binCommand(): string {
+  const quote = process.platform === 'win32' ? "'" : '"';
+  const entry = path.join(__dirname, '../../packages/cli/dist/index.js');
+  return `${quote}${process.execPath}${quote} ${quote}${entry}${quote}`;
+}
+
 function getChangedScenarios(changedFiles: string[], scenarios: string[]): string[] {
   return Array.from(
     new Set([
@@ -52,8 +62,17 @@ function getChangedScenarios(changedFiles: string[], scenarios: string[]): strin
 
   const scenarios = await fg('**/*.scenario', { cwd: SCENARIOS_DIR, absolute: true });
   const cache = fileEntryCache.create('spectral-test-harness', path.join(__dirname, '../../.cache'), true);
-  const changedFiles = cache.getUpdatedFiles([...scenarios, ...(await fg('**/**', { cwd: OUT_DIR, absolute: true }))]);
-  const changedScenarios = getChangedScenarios(changedFiles, scenarios);
+  // This generator is tracked alongside the scenarios. The `bin` command is baked into
+  // every generated test at generation time, so a change HERE invalidates every previously
+  // generated test even though no scenario file moved. Without this, a cached tests/
+  // directory silently keeps running the old command — which is exactly how #35's fix
+  // passed locally and failed in CI.
+  const changedFiles = cache.getUpdatedFiles([
+    __filename,
+    ...scenarios,
+    ...(await fg('**/**', { cwd: OUT_DIR, absolute: true })),
+  ]);
+  const changedScenarios = changedFiles.includes(__filename) ? scenarios : getChangedScenarios(changedFiles, scenarios);
 
   await Promise.all(
     Array.from(changedScenarios).map(async file => {
@@ -83,9 +102,7 @@ function getChangedScenarios(changedFiles: string[], scenarios: string[]): strin
         //
         // SPECTRAL_BIN overrides it, so the real binary can still be exercised at release
         // time by pointing at packages/cli/binaries/spectral.
-        bin:
-          process.env.SPECTRAL_BIN ??
-          `"${process.execPath}" "${path.join(__dirname, '../../packages/cli/dist/index.js')}"`,
+        bin: process.env.SPECTRAL_BIN ?? binCommand(),
         ...scenario.env,
       };
 
