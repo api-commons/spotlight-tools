@@ -47,8 +47,11 @@ unmaintained format.** That is the actual problem, and it is why this repository
 
 ## What is different from upstream
 
-- **No telemetry.** The Scarf install-time analytics added upstream on 2026-06-30 are removed from
-  `cli`, `core`, `rulesets`, `formats`, `functions`, and the Docker image. Nothing phones home.
+- **No telemetry, and it is checked rather than promised.** The Scarf install-time analytics added
+  upstream on 2026-06-30 are removed from `cli`, `core`, `rulesets`, `formats`, `functions`, and the
+  Docker image. Nothing phones home — and `yarn lint.no-telemetry` fails the build if any package
+  here reacquires an install-time hook, so this is a property of every release rather than a claim
+  about one commit. See [the no-telemetry policy](#no-telemetry) below.
 - **Issues are open, and answered.** See below.
 - **Compatibility is the contract.** This build starts from the exact ruleset format and the exact
   CLI behavior of Spectral as of v6.16.2. Existing rulesets keep working. Any future divergence
@@ -56,6 +59,38 @@ unmaintained format.** That is the actual problem, and it is why this repository
 
 Everything else — the rules, the functions, the formatters, the CLI surface — is unchanged. This
 is a starting point, not a rewrite.
+
+### No telemetry
+
+A versioned policy, not a preference. An API governance tool sits inside the pipeline that inspects
+an organization's API surface, and a phone-home from that position is not the same as a phone-home
+from a colour-picker library. It also creates a governance problem that cannot be argued away: a
+maintainer with something to sell who is also collecting usage data has a sales list, whatever the
+stated intent was.
+
+So, for every release of every package in this repository:
+
+- **No install-time analytics.** No package declares `preinstall`, `install`, `postinstall` or
+  `prepublish`. This is enforced by `scripts/check-no-telemetry.mjs`, which runs in CI on every pull
+  request and fails the build.
+- **No run-time analytics**, and no undisclosed network calls of any kind from the CLI.
+- **Any network access the tool does make is user-initiated, documented, and disableable.** Resolving
+  a remote `$ref` or fetching a remote ruleset is a feature. The line is disclosure and intent — you
+  asked for it, it is documented, and you can turn it off — not whether a socket is ever opened.
+
+**The dependency tree is part of the claim.** A removed hook here means nothing if something we
+depend on ships one, so the same scan runs across the installed tree:
+
+```
+yarn lint.no-telemetry --deps
+```
+
+At the time of writing that scan reads **1,762 installed packages** and finds **two** that run code
+at install time — `@swc/core` (a root development dependency, fetching its native binary) and
+`es5-ext` (reached only through `json-schema-to-typescript`, a build-time tool). **Neither is in the
+dependency path of anyone installing the CLI.** That number is published so you can re-run it and
+disagree with it, which is the point: this claim should be checkable by the people who need it to be
+true, rather than taken on trust from a maintainer.
 
 ## Where things go
 

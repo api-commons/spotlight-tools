@@ -121,3 +121,9 @@ jobs:
       # file that exists in docs/reference/. Reachability is checked on a schedule
       # instead, so a pull request never fails because a third party is having a bad day.
       run: yarn lint.docs-urls
+    - name: Check no package reacquired an install-time hook
+      # "We removed the telemetry" is a statement about one commit. This makes it a
+      # statement about every release: no package in this repository may declare
+      # preinstall, install, postinstall or prepublish. First-party only — the
+      # dependency-tree scan (--deps) is a judgement call, not a red X on a pull request.
+      run: yarn lint.no-telemetry
