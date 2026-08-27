@@ -82,6 +82,22 @@ Published API Commons packages will be announced in the discussion thread and on
 [spotlight-rules.com](https://spotlight-rules.com). Per-package documentation lives in
 [`packages/cli/README.md`](packages/cli/README.md).
 
+### Supported Node versions
+
+|                 |                                                                          |
+| --------------- | ------------------------------------------------------------------------ |
+| **Verified**    | 18.20.8 and 20.20.0 in CI on every pull request; 25.2.1 verified by hand |
+| **Declared**    | `engines: ^16.20 \|\| ^18.18 \|\| >= 20.17`                              |
+| **Docker base** | `node:22-alpine`                                                         |
+
+The declared range still admits **Node 16, which reached end of life in September 2023**. It is
+left as-is for now because narrowing `engines` is a breaking change for anyone pinned there, and
+that is a decision to make deliberately rather than as a side effect of a Dockerfile bump. Nothing
+in CI tests Node 16, so treat it as unsupported in practice.
+
+The Docker image does not run Node from its base image — the entrypoint is a self-contained
+binary — so the base is there for a current Alpine userland rather than for a runtime.
+
 ## Where this is going
 
 **Multi-specification support is the point.** The format is a general-purpose JSON/YAML rules
