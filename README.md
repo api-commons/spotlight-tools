@@ -84,11 +84,11 @@ Published API Commons packages will be announced in the discussion thread and on
 
 ### Supported Node versions
 
-| | |
-|---|---|
-| **Verified** | 18.20.8 and 20.20.0 in CI on every pull request; 25.2.1 verified by hand |
-| **Declared** | `engines: ^16.20 \|\| ^18.18 \|\| >= 20.17` |
-| **Docker base** | `node:22-alpine` |
+|                 |                                                                          |
+| --------------- | ------------------------------------------------------------------------ |
+| **Verified**    | 18.20.8 and 20.20.0 in CI on every pull request; 25.2.1 verified by hand |
+| **Declared**    | `engines: ^16.20 \|\| ^18.18 \|\| >= 20.17`                              |
+| **Docker base** | `node:22-alpine`                                                         |
 
 The declared range still admits **Node 16, which reached end of life in September 2023**. It is
 left as-is for now because narrowing `engines` is a breaking change for anyone pinned there, and
