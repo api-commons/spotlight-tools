@@ -3,11 +3,19 @@ on:
   workflow_call:
   pull_request:
     branches: [main]
-    # `.github/**` is deliberately NOT ignored. Workflows and composite actions are the
+    # Nothing is ignored, deliberately.
+    #
+    # `.github/**` was already not ignored: workflows and composite actions are the
     # riskiest files here and were the only ones nothing verified — see #33. Three CI
     # config changes merged unchecked on 3 August and two of them were wrong.
-    paths-ignore:
-    - README.md
+    #
+    # README.md came off this list on 27 August for the same reason, having proved the
+    # point. `lint.prettier` checks README.md, but a README-only pull request skipped
+    # this workflow entirely, so `lint` never ran on it. #67 was README-only, merged
+    # green on markdown-link-check alone, and turned `main` red — where it stayed for
+    # nine days, because post-main-merge calls this workflow through `workflow_call`,
+    # which path filters do not apply to. A file that CI checks must be a file that
+    # triggers CI.
 jobs:
   test-node:
     runs-on: ubuntu-latest
