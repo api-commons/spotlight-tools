@@ -27,7 +27,13 @@ jobs:
         token: ${{ secrets.GH_TOKEN }}
     - name: Configure Git
       run: |
-        git config --global --add safe.directory /__w/spectral/spectral
+        # $GITHUB_WORKSPACE, not a hard-coded path. This said /__w/spectral/spectral,
+        # which is the UPSTREAM repository's checkout path. In this fork the workspace is
+        # /__w/spotlight-tools/spotlight-tools, so the exception was being granted to a
+        # directory that does not exist and git would have refused the real one as
+        # dubiously owned. commit.yml and upstream-watch.yml were already fixed this way;
+        # release.yml is the one workflow nobody has run, so nothing caught it.
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
     - name: Cached dependencies
